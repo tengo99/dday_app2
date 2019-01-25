@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 
 public class PhMainActivity extends AppCompatActivity
 {
@@ -38,6 +39,9 @@ public class PhMainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 한국어 설정 (ex: date picker)
+        Locale.setDefault(Locale.KOREAN);
+
         // 현재 날짜를 알기 위해 사용
         mCalendar = new GregorianCalendar();
 
@@ -55,6 +59,7 @@ public class PhMainActivity extends AppCompatActivity
                 final int year = mCalendar.get(Calendar.YEAR);
                 final int month = mCalendar.get(Calendar.MONTH);
                 final int day = mCalendar.get(Calendar.DAY_OF_MONTH);
+
                 DatePickerDialog dialog = new DatePickerDialog(PhMainActivity.this, mDateSetListener, year, month, day);
                 dialog.show();
             }
