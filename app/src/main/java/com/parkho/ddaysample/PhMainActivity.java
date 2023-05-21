@@ -20,10 +20,10 @@ public class PhMainActivity extends AppCompatActivity
     private final int ONE_DAY = 24 * 60 * 60 * 1000;
 
     // 현재 날짜를 알기 위해 사용
-    private Calendar mCalendar;
+    private Calendar mCalendar,mCalendar2;
 
     // D-day result
-    private TextView mTvResult;
+    private TextView mTvResult,mTvResult2;
 
     // DatePicker 에서 날짜 선택 시 호출
     private OnDateSetListener mDateSetListener = new OnDateSetListener() {
@@ -31,6 +31,7 @@ public class PhMainActivity extends AppCompatActivity
         public void onDateSet(DatePicker a_view, int a_year, int a_monthOfYear, int a_dayOfMonth) {
             // D-day 계산 결과 출력
             mTvResult.setText(getDday(a_year, a_monthOfYear, a_dayOfMonth));
+            mTvResult2.setText(getDday(a_year, a_monthOfYear, a_dayOfMonth));
         }
     };
 
@@ -44,13 +45,17 @@ public class PhMainActivity extends AppCompatActivity
 
         // 현재 날짜를 알기 위해 사용
         mCalendar = new GregorianCalendar();
+        mCalendar2 = new GregorianCalendar();
 
         // Today 보여주기
         TextView tvDate = findViewById(R.id.tv_date);
         tvDate.setText(getToday());
+        TextView tvDate2 = findViewById(R.id.tv_date2);
+        tvDate2.setText(getToday());
 
         // D-day 보여주기
         mTvResult = findViewById(R.id.tv_result);
+        mTvResult2 = findViewById(R.id.tv_result2);
 
         // Input date click 시 date picker 호출
         OnClickListener clickListener = new OnClickListener() {
@@ -60,11 +65,18 @@ public class PhMainActivity extends AppCompatActivity
                 final int month = mCalendar.get(Calendar.MONTH);
                 final int day = mCalendar.get(Calendar.DAY_OF_MONTH);
 
+                final int year2 = mCalendar2.get(Calendar.YEAR);
+                final int month2 = mCalendar2.get(Calendar.MONTH);
+                final int day2 = mCalendar2.get(Calendar.DAY_OF_MONTH);
+
+
+
                 DatePickerDialog dialog = new DatePickerDialog(PhMainActivity.this, mDateSetListener, year, month, day);
                 dialog.show();
             }
         };
         findViewById(R.id.btn_input_date).setOnClickListener(clickListener);
+        findViewById(R.id.btn_input_date2).setOnClickListener(clickListener);
     }
 
     /**
